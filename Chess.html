@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chess</title>
+    <style>
+        #container {
+            width: 616px;
+        }
+            #container > div {
+                border: 1px solid black;
+                width:  75px;
+                height: 75px;
+                float:  left;
+                
+            }
+
+        .black {
+            background: grey;
+        }
+    </style>
+    <script>
+
+        var whites = [{
+            label: 'Pawn',
+            code: '&#9817;',
+            x: 0,
+            y: 6
+        },{
+            label: 'Pawn',
+            code: '&#9817;',
+            x: 1,
+            y: 6
+        },{
+            label: 'Pawn',
+            code: '&#9817;',
+            x: 2,
+            y: 6
+        },{
+            label: 'Pawn',
+            code: '&#9817;',
+            x: 3,
+            y: 6
+        },{
+            label: 'Pawn',
+            code: '&#9817;',
+            x: 0,
+            y: 6
+        },{
+            label: 'Pawn',
+            code: '&#9817;',
+            x: 4,
+            y: 6
+        },{
+            label: 'Pawn',
+            code: '&#9817;',
+
+            x: 5,
+            y: 6
+        },{
+            label: 'Pawn',
+            code: '&#9817;',
+            x: 6,
+            y: 6
+        },{
+            label: 'Pawn',
+            code: '&#9817;',
+            x: 7,
+            y: 6
+        }, {
+             label: 'Rook',
+             code: '&#9814;',
+             x: 0,
+             y: 7
+        }, {
+             label: 'Knight',
+             code: '&#9816;',
+             x: 1,
+             y: 7
+        }, {
+             label: 'Bishop',
+             code: '&#9815;',
+             x: 2,
+             y: 7
+        }, {
+             label: 'Queen',
+             code: '&#9813;',
+             x: 3,
+             y: 7
+        }, {
+             label: 'King',
+             code: '&#9812;',
+             x: 4,
+             y: 7
+        }, {
+             label: 'Bishop',
+             code: '&#9815;',
+             x: 5,
+             y: 7
+        }, {
+             label: 'Knight',
+             code: '&#9816;',
+             x: 6,
+             y: 7
+        }, {
+             label: 'Rock',
+             code: '&#9814;',
+             x: 7,
+             y: 7
+        }];
+
+        var blacks = [
+            {
+                label: 'Pawn',
+                code: '&#9823;',
+                x: 1,
+                y: 7
+            }, {
+                label: 'Pawn',
+                code: '&#9823;',
+                x: 1,
+                y: 6
+            }, {
+                label: 'Pawn',
+                code: '&#9823;',
+                x: 1,
+                y: 5
+            }, {
+                label: 'Pawn',
+                code: '&#9823;',
+                x: 1,
+                y: 4
+            }, {
+                label: 'Pawn',
+                code: '&#9823;',
+                x: 1,
+                y: 3
+            }, {
+                label: 'Pawn',
+                code: '&#9823;',
+
+                x: 1,
+                y: 2
+            }, {
+                label: 'Pawn',
+                code: '&#9823;',
+                x: 1,
+                y: 1
+            }, {
+                label: 'Pawn',
+                code: '&#9823;',
+                x: 1,
+                y: 0
+            }, {
+                label: 'Rook',
+                code: '&#9820;',
+                x: 0,
+                y: 7
+            }, {
+                label: 'Knight',
+                code: '&#9822;',
+                x: 0,
+                y: 6
+            }, {
+                label: 'Bishop',
+                code: '&#9821',
+                x: 0,
+                y: 5
+            }, {
+                label: 'Queen',
+                code: '&#9819;',
+                x: 0,
+                y: 4
+            }, {
+                label: 'King',
+                code: '&#9818;',
+                x: 0,
+                y: 3
+            }, {
+                label: 'Bishop',
+                code: '&#9821;',
+                x: 0,
+                y: 2
+            }, {
+                label: 'Knight',
+                code: '&#9822;',
+                x: 0,
+                y: 1
+            }, {
+                label: 'Rook',
+                code: '&#9820;',
+                x: 0,
+                y: 0
+            }
+        ]
+
+        function getFigure(x, y, figures) {
+            for (var i  = 0; i < figures.length; i++) {
+                if (figures[i].x == x && figures[i].y == y) {
+                    return figures[i];
+                }
+            }
+        }
+        function drawBoard(container) {
+            for (var i = 0; i < 8; i++) {
+                for (var j = 0; j < 8; j++) {
+                    var div = document.createElement('div');
+                    if ((i % 2 == 0 && j % 2 == 0) || (i % 2 == 1 && j % 2 == 1)) {
+                        div.className = 'white';
+                    } else {
+                        div.className = 'black';
+                    }
+
+                    var figure = getFigure(j, i, whites);
+                    if (figure) {
+                        var figureContainer = document.createElement('div');
+                        figureContainer.className = 'figure';
+                        figureContainer.innerHTML = figure.code;
+                        div.appendChild(figureContainer);
+                    }
+                    var figure2 = getFigure(i, j, blacks);
+                    if (figure2) {
+                        var figureContainer = document.createElement('div');
+                        figureContainer.className = 'figure';
+                        figureContainer.innerHTML = figure2.code;
+                        div.appendChild(figureContainer);
+                    }
+                    container.appendChild(div)
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div id="container">
+
+    </div>
+</body>
+
+
+<script>
+
+    drawBoard(document.getElementById('container'));
+
+</script>
+
+</html>
